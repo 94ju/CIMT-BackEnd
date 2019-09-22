@@ -37,8 +37,10 @@ router.post('/register',(req,res,next)=>{
 
 router.post('/login',(req,res,next)=>{
     let fetchedUser;
-    User.findOne({email:req.bode.email})
+    //console.log(req.body)
+    User.findOne({email:req.body.email})
         .then(user=>{
+            //console.log(user)
             if(!user){
                 return res.status.json({
                     message:"Authentication failed"
@@ -48,15 +50,20 @@ router.post('/login',(req,res,next)=>{
             return bcrypt.compare(req.body.password, user.password)
         })
         .then(result=>{
+            console.log(result)
             if(!result){
                 return res.status.json({
                     message:"Authentication failed"
                 })
             }
-
+            const token = jwt.sign({email:fetchedUser.email,userId:fetchedUser._id},'secret_webtoken_encryption',{expiresIn:'1h'});
+            console.log(token)
+            res.status(200).json({
+                token:token
+            })
         })
         .catch(err=>{
-            return res.status.json({
+            return res.status(404).json({
                 message:"Authentication failed"
             })
         })
