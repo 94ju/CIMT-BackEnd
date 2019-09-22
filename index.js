@@ -3,6 +3,7 @@ const app = express();
 const users =require('./models/users');
 const mongoose=require('mongoose');
 const userRoutes = require("./routes/user");
+const bodyParser = require("body-parser");
 
 mongoose.connect("mongodb+srv://janith:u3dvQPRtFHQHaWXc@cluster0-pwla0.mongodb.net/userDetails?retryWrites=true&w=majority").
     then(
@@ -11,6 +12,8 @@ mongoose.connect("mongodb+srv://janith:u3dvQPRtFHQHaWXc@cluster0-pwla0.mongodb.n
             ()=>console.log("connection failed")
 )
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader(

@@ -7,7 +7,8 @@ router.get('/',(req,res,next)=>{
     res.send('check')
 });
 
-router.post('/',(req,res,next)=>{
+router.post('/register',(req,res,next)=>{
+    console.log(req.body)
     bcrypt.hash(req.body.password,10).
         then(hash=>{
             const user= new User({
