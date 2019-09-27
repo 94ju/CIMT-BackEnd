@@ -3,6 +3,7 @@ const app = express();
 const users =require('./models/users');
 const mongoose=require('mongoose');
 const userRoutes = require("./routes/user");
+const vmdetails= require("./routes/vmDetails")
 const bodyParser = require("body-parser");
 
 mongoose.connect("mongodb+srv://janith:u3dvQPRtFHQHaWXc@cluster0-pwla0.mongodb.net/userDetails?retryWrites=true&w=majority").
@@ -28,6 +29,8 @@ app.use((req, res, next) => {
   });
   
   app.use("/api/users", userRoutes);
+  app.use("/api/vms", userRoutes);
+  app.use("/api/vmdetails", vmdetails);
   module.exports =app
 // app.get('/api',(req,res,next)=>{
 //     res.send('check');
