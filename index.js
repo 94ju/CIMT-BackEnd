@@ -3,10 +3,11 @@ const app = express();
 const users =require('./models/users');
 const mongoose=require('mongoose');
 const userRoutes = require("./routes/user");
+const vmRoutes = require("./routes/vm");
 const vmdetails= require("./routes/vmDetails")
 const bodyParser = require("body-parser");
 
-mongoose.connect("mongodb+srv://janith:u3dvQPRtFHQHaWXc@cluster0-pwla0.mongodb.net/userDetails?retryWrites=true&w=majority").
+mongoose.connect("mongodb+srv://janith:bu6mL1rqpKDfSM7R@cluster0-pwla0.mongodb.net/CIMT?retryWrites=true&w=majority").
     then(
             ()=>console.log('connected to database')
         ).catch(
@@ -29,20 +30,7 @@ app.use((req, res, next) => {
   });
   
   app.use("/api/users", userRoutes);
-  app.use("/api/vms", userRoutes);
+  app.use("/api/vms", vmRoutes);
   app.use("/api/vmdetails", vmdetails);
   module.exports =app
-// app.get('/api',(req,res,next)=>{
-//     res.send('check');
-// });
-// app.post('/api/user',(req,res)=>{
-//     const user = new user({
-//         email:req.body.email,
-//         password:req.body.password
-//     });
-//     user.save();
-// })
-
-
-
 app.listen(3000,()=>console.log('lister port 3000'))
