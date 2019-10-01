@@ -37,10 +37,8 @@ router.post('/register',(req,res,next)=>{
 
 router.post('/login',(req,res,next)=>{
     let fetchedUser;
-    //console.log(req.body)
     User.findOne({email:req.body.email})
         .then(user=>{
-            //console.log(user)
             if(!user){
                 return res.status.json({
                     message:"Authentication failed"
@@ -56,10 +54,13 @@ router.post('/login',(req,res,next)=>{
                     message:"Authentication failed"
                 })
             }
-            const token = jwt.sign({email:fetchedUser.email,userId:fetchedUser._id},'secret_webtoken_encryption',{expiresIn:'1h'});
+            const token = jwt.sign({email:fetchedUser.email,userId:fetchedUser._id},
+                'secret_webtoken_encryption',
+                {expiresIn:'1h'});
             console.log(token)
             res.status(200).json({
-                token:token
+                token:token,
+                expiresIn:3600
             })
         })
         .catch(err=>{
