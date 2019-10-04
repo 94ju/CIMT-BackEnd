@@ -9,11 +9,7 @@ router.get('/vmdata',checkAuth,(req,res,next)=>{
     res.send('check')
 });
 router.post('/createvm',checkAuth,(req,res)=>{
-    AWS.config.update({
-        accessKeyId:'AKIAQIT3JR7QEQSSDB5Y',
-        secretAccessKey:'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',
-        region:'us-east-1'
-    })
+  
     const vm = new Vm({
         ami:req.body.ami,
         instanceType:req.body.instanceType,
