@@ -7,7 +7,7 @@ const vmRoutes = require("./routes/vm");
 const vmdetails= require("./routes/vmDetails")
 const bodyParser = require("body-parser");
 
-mongoose.connect("mongodb+srv://janith:bu6mL1rqpKDfSM7R@cluster0-pwla0.mongodb.net/CIMT?retryWrites=true&w=majority").
+mongoose.connect("mongodb+srv://janith:8ioKbD9PFwPyNypx@cluster0-pwla0.mongodb.net/CIMT?retryWrites=true&w=majority").
     then(
             ()=>console.log('connected to database')
         ).catch(
@@ -33,4 +33,3 @@ app.use((req, res, next) => {
   app.use("/api/vms", vmRoutes);
   app.use("/api/vmdetails", vmdetails);
   module.exports =app
-app.listen(3000,()=>console.log('lister port 3000'))
