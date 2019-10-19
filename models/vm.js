@@ -1,11 +1,15 @@
 const mongoose= require('mongoose')
 
 const vmSchema=mongoose.Schema({
+    InstanceId:{type:String},
     ami:{type:String},
     instanceType:{type:String},
-    numberOfInstances:{type:String},
-    storage:{type:String},
-    securityGroup:{type:String}
+    keyname:{type:String},
+    tag:{type:String},
+    securityGroup:{type:String},
+    PrivateIpAddress:{type:String},
+    creator:{type: mongoose.Schema.Types.ObjectId,ref:"User"}
+    // LaunchTime:{type:Date}
 })
 
 
