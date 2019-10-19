@@ -9,7 +9,7 @@
 
 # dependencies
 /node_modules
-
+nodemon.json
 /vm.js
 # profiling files
 chrome-profiler-events*.json

@@ -7,7 +7,8 @@ const vmRoutes = require("./routes/vm");
 const vmdetails= require("./routes/vmDetails")
 const bodyParser = require("body-parser");
 
-mongoose.connect("mongodb+srv://janith:8ioKbD9PFwPyNypx@cluster0-pwla0.mongodb.net/CIMT?retryWrites=true&w=majority").
+mongoose.connect("mongodb+srv://janith:"+
+process.env.MONGO_ATLAS_PW+"@cluster0-pwla0.mongodb.net/CIMT?retryWrites=true&w=majority").
     then(
             ()=>console.log('connected to database')
         ).catch(

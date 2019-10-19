@@ -27,7 +27,7 @@ router.post('/register',(req,res,next)=>{
                 catch(err=>{
                     res.status(500).json(
                         {
-                            error:err
+                            message:"Email Exists"
                         }
                     )
                 })
@@ -41,7 +41,7 @@ router.post('/login',(req,res,next)=>{
         .then(user=>{
             if(!user){
                 return res.status.json({
-                    message:"Authentication failed"
+                    message:"Invalid email"
                 })
             }
             fetchedUser=user;
@@ -51,21 +51,23 @@ router.post('/login',(req,res,next)=>{
             console.log(result)
             if(!result){
                 return res.status.json({
-                    message:"Authentication failed"
+                    message:"Invalid password"
                 })
             }
             const token = jwt.sign({email:fetchedUser.email,userId:fetchedUser._id},
-                'secret_webtoken_encryption',
+                process.env.JWT_KEY,
                 {expiresIn:'1h'});
             console.log(token)
             res.status(200).json({
                 token:token,
-                expiresIn:3600
+                expiresIn:3600,
+                userId:fetchedUser._id,
+                userName:fetchedUser.username
             })
         })
         .catch(err=>{
             return res.status(404).json({
-                message:"Authentication failed"
+                message:"Invalid credentials"
             })
         })
 })
