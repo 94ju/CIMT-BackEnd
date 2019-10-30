@@ -4,17 +4,28 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --watchAll  "
+    
+  },"jest": {
+    "verbose": false,
+    "watchAll":true,
+    "testURL": "http://localhost/"
   },
+ 
   "author": "",
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.539.0",
     "bcryptjs": "^2.4.3",
+    "config": "^3.2.3",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.1",
     "request": "^2.88.0",
     "request-promise": "^4.2.4"
+  },
+  "devDependencies": {
+    "jest": "^22.2.2",
+    "supertest": "^3.0.0"
   }
 }

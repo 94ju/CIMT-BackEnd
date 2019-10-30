@@ -39,6 +39,7 @@ router.post('/login',(req,res,next)=>{
     let fetchedUser;
     User.findOne({email:req.body.email})
         .then(user=>{
+            console.log(user)
             if(!user){
                 return res.status.json({
                     message:"Invalid email"

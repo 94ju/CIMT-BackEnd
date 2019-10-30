@@ -1,3 +1,4 @@
+const config = require('config');
 const express = require('express');
 const app = express();
 const users =require('./models/users');
@@ -7,15 +8,15 @@ const vmRoutes = require("./routes/vm");
 const vmdetails= require("./routes/vmDetails")
 const bodyParser = require("body-parser");
 
-mongoose.connect("mongodb+srv://janith:"+
-process.env.MONGO_ATLAS_PW+"@cluster0-pwla0.mongodb.net/CIMT?retryWrites=true&w=majority").
+const db = config.get('db');
+mongoose.connect(db).
     then(
-            ()=>console.log('connected to database')
+            ()=>console.log('connected to database'+db)
         ).catch(
             ()=>console.log("connection failed")
 )
 
-app.use(bodyParser.json());
+ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");

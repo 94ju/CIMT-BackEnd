@@ -13,9 +13,10 @@ function getconfig(){
   })
 }
 
-router.get('/vmdata',checkAuth,(req,res,next)=>{
+router.get('/vmdata',(req,res,next)=>{
     Vm.find().then(
       vms=>{
+        // res.send(vms)
         res.status(200).json({
           message: "vms fetched successfully!",
           vms: vms
